@@ -20,6 +20,16 @@ public class ContactFromPage {
     @FindBy(xpath = "//button[contains(text(),'Submit')]")
     private WebElement submitForm;
 
+    @FindBy(id = "FullName-error")
+    private WebElement fullNameErrorMessage;
+
+    @FindBy(id = "Email-error")
+    private WebElement emailErrorMessage;
+
+    @FindBy(id = "Enquiry-error")
+    private WebElement enquiryErrorMessage;
+
+
     protected WebDriver driver;
 
     public ContactFromPage(WebDriver driver) {
@@ -28,7 +38,19 @@ public class ContactFromPage {
 
     }
 
-    public ContactFromResultPage completeForm(String query1, String query2, String query3){
+    @FindBy(xpath = "//div[contains(text(),'Your enquiry has been successfully sent to the sto')]")
+    private String formSentSuccessfully;
+
+    public void getTextFromResultPage() {
+
+        String succes = formSentSuccessfully;
+        System.out.println(succes);
+
+
+
+    }
+
+    public ContactFromPage completeForm(String query1, String query2, String query3){
 
         yourNameTextBox.sendKeys(query1);
         yourEmailTextBox.sendKeys(query2);
@@ -36,7 +58,7 @@ public class ContactFromPage {
 
         submitForm.click();
 
-        return new ContactFromResultPage(driver);
+        return new ContactFromPage(driver);
 
     }
 
