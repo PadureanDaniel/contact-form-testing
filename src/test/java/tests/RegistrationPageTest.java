@@ -1,5 +1,6 @@
 package tests;
 
+import pages.HomePage;
 import utils.RandomEmail;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,18 +27,20 @@ public class RegistrationPageTest {
     @Test
     public void canSendContactRequestWithValidData() {
         RegistrationPage registrationPage = new RegistrationPage(driver);
-        String email = RandomEmail.generateRandomEmail(); // clasa StringHelper + metoda generateRandomEmail
+        String email = RandomEmail.generateRandomEmail();
         registrationPage.fillInRegistrationForm("meh","meh",email,"meh", "mehmeh", "mehmeh");
     }
 
     @Test
     public void verifyLoginAfterSuccessfulRegistration(){
         RegistrationPage registrationPage = new RegistrationPage(driver);
-        String email = RandomEmail.generateRandomEmail(); // clasa StringHelper + metoda generateRandomEmail
+        String email = RandomEmail.generateRandomEmail();
         registrationPage.fillInRegistrationForm("meh","meh",email,"meh", "mehmeh", "mehmeh");
         registrationPage.logout();
         LoginPage loginPage = registrationPage.goToLoginPage();
         loginPage.completeLoginPage(email, "mehmeh");
+
+
     }
 
     @AfterEach
